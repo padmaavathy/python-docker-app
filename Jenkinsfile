@@ -6,11 +6,13 @@ node{
       
     stage("Docker Build"){
      def app = docker.build "manee2k6/padmavathy"
-    }
+     }
     
     stage("Tag & Push image"){
-     app.tag "manee2k6/padmavathy:reckon"
-     app.push "manee2k6/padmavathy:reckon"
+     withDockerRegistry([credentialsId: 'DockerID', url: 'https://hub.docker.com']) {
+       app.push "manee2k6/padmavathy:latest"
+       app.push "manee2k6/padmavathy:reckon" 
+        }
     }
     
     stage("App deployed"){
