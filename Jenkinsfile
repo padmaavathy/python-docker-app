@@ -9,7 +9,7 @@ node{
      }
     
     stage("Tag & Push image"){
-     withDockerRegistry([credentialsId: 'DockerID', url: '']) {
+     withDockerRegistry([credentialsId: 'DockerID', url: 'https://hub.docker.com']) {
        app.push()
        app.push("reckon")
         }
