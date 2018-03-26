@@ -9,11 +9,10 @@ node{
      }
     
     stage("Tag & Push image"){
-       docker.withRegistry([credentialsId: 'DockerID', url: 'https://hub.docker.com'])
+       docker.withRegistry([credentialsId: 'DockerID', url: 'https://hub.docker.com']){
        //withDockerRegistry([credentialsId: 'DockerID', url: 'https://hub.docker.com']) {
        app.push()
-       
-        }
+      }
     }
     
     stage("App deployed"){
