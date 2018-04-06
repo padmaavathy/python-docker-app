@@ -15,6 +15,14 @@ node{
           sh 'docker push manee2k6/padmavathy:001'
       }
     }
+   
+   stage("App deployment started"){
+     sh 'oc login https://api.starter-us-west-1.openshift.com --token=l334xAzzGBl7kvYuUFcvfRCCXMsQxeQJox3pEzbSQrQ'
+     sh 'oc new project padmavathy'
+     sh 'oc new-app manee2k6/python-app:pattabhi-1.0 --name python-app'
+     sh 'oc expose svc python-app --name=python-app'
+     sh 'oc status'
+    }
     
     stage("App deployed"){
      echo 'App deployed to Hub..'
